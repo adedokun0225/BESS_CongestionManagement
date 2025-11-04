@@ -1,0 +1,257 @@
+Measured dist betweeen Handewitt and Flensburg:1.32 km
+Measured dist betweeen flensburg and Weding:7.00 km
+Measured dist betweeen flensburg and Lindewitt:10.08 km
+Measured dist betweeen flensburg and Uw Grossenwiehe:2.07 km
+Measured dist betweeen Flensburg Nord and Weding:5.37 km
+Measured dist betweeen Lindewitt and Soholm:7.36 km
+Measured dist betweeen Jardelund and Weesby:5.22 km
+Measured dist betweeen Jardelund and Suderlugum:5.35 km
+Measured dist betweeen Soholm and Helping Bus 3:14.61 km
+Measured dist betweeen Helping Bus 1 and Uw Grossenwiehe:4.53 km
+Measured dist betweeen Schobull and Helping Bus 1:0.83 km
+Measured dist betweeen Helping Bus 1 and Löwenstedt:7.88 km
+Measured dist betweeen Löwenstedt and Vollstedt:5.42 km
+Measured dist betweeen Vollstedt and Breklum:5.77 km
+Measured dist betweeen Breklum and Breklum_Ost:0.41 km
+Measured dist betweeen Breklum and Helping Bus 2:4.03 km
+Measured dist betweeen KlixBull Sud and Niel bull:0.51 km
+Measured dist betweeen Niel bull and EMBO:7.76 km
+Measured dist betweeen EMBO and Helping Bus 49:3.90 km
+Measured dist betweeen Helping Bus 49 and TOFT:3.14 km
+Measured dist betweeen Helping Bus 49 and Lubkekoog ost:6.18 km
+Measured dist betweeen Lubkekoog ost and Lubkekoog west:2.64 km
+Measured dist betweeen Lubkekoog west and Keitum:18.24 km
+Measured dist betweeen Helping Bus 2 and Dörpum:0.76 km
+Measured dist betweeen Helping Bus 2 and Langenhorn:5.23 km
+Measured dist betweeen Klixbull Sud and Helping Bus 3:0.65 km
+Measured dist betweeen Helping Bus 3 and Langenhorn:13.94 km
+Measured dist betweeen Uw Husum Nord and Horstedt:0.50 km
+Measured dist betweeen Uw Husum Nord and Rosendahl:4.83 km
+Measured dist betweeen Rosendahl and Oldersbek:5.00 km
+Measured dist betweeen Oldersbek and Helping Bus 5:32.92 km
+Measured dist betweeen Helping Bus 5 and Rendsburg Nord:3.98 km
+Measured dist betweeen Brunesbuttel and Helping Bus 19:2.55 km
+Measured dist betweeen Helping Bus 19 and Ostermoor Ost:2.21 km
+Measured dist betweeen Ostermoor Ost and Ostermoor West:1.35 km
+Measured dist betweeen Helping Bus 18 and Dingen:7.14 km
+Measured dist betweeen Dingen and Suderdonn:1.88 km
+Measured dist betweeen Heide West and Heide:4.63 km
+Measured dist betweeen Heide and Helping Bus 22:7.80 km
+Measured dist betweeen Heide and Arkebek:9.90 km
+Measured dist betweeen Arkebek and Helping Bus 23:8.87 km
+Measured dist betweeen Helping Bus 23 and Hademarschen:5.21 km
+Measured dist betweeen Helping Bus 22 and Linden:1.61 km
+Measured dist betweeen Helping Bus 22 and Heide:7.80 km
+Measured dist betweeen Helping Bus 22 and Helping Bus 24:14.14 km
+Measured dist betweeen Helping Bus 22 and Helping Bus 53:1.75 km
+Measured dist betweeen Helping Bus 53 and Hemme West:8.80 km
+Measured dist betweeen Helping Bus 24 and Friedrichstadt:0.46 km
+Measured dist betweeen Friedrichstadt and Rosendahl:11.11 km
+Measured dist betweeen Suderdonn and Helping Bus 20:1.22 km
+Measured dist betweeen Helping Bus 20 and Marne West:7.34 km
+Measured dist betweeen Marne West and Dieksanderkoog:4.40 km
+Measured dist betweeen Helping Bus 20 and Barit:2.64 km
+Measured dist betweeen Barit and Quickborn:8.66 km
+Measured dist betweeen Barit and Helping Bus 21:9.72 km
+Measured dist betweeen Helping Bus 21 and Meldorf:1.43 km
+Measured dist betweeen Heide West and Wohrden:2.15 km
+Measured dist betweeen Wohrden and Reinsbuttel:8.40 km
+Measured dist betweeen Reinsbuttel and SDEI:0.91 km
+Measured dist betweeen SDEI and Strübbel:8.13 km
+Measured dist betweeen Stübbel and Tönning:7.41 km
+Measured dist betweeen Tönning and St Peter:19.02 km
+Measured dist betweeen St Peter and Rosendahl:34.37 km
+Measured dist betweeen Audorf and Schacht:1.31 km
+Measured dist betweeen Helping Bus 25 and Helping Bus 26:10.53 km
+Measured dist betweeen Helping Bus 26 and Kropp:6.08 km
+Measured dist betweeen Helping Bus 26 and Schuby:11.76 km
+Measured dist betweeen Schuby and Helping Bus 27:18.02 km
+Measured dist betweeen Helping Bus 27 and Tarp:1.39 km
+Measured dist betweeen Helping Bus 27 and Weding:8.53 km
+Measured dist betweeen Schacht and Rendsburg Mitte:1.79 km
+Measured dist betweeen Audorf and Pollhorn:8.91 km
+Measured dist betweeen Pollhorn and Helping Bus 7:15.00 km
+Measured dist betweeen Helping Bus 7 and Hohenwestedt:4.50 km
+Measured dist betweeen Helping Bus 7 and Substation Adj 1:6.09 km
+Measured dist betweeen Substation Adj 1 and Helping Bus 8:9.78 km
+Measured dist betweeen Helping Bus 8 and Itzehoe Nord:0.80 km
+Measured dist betweeen Helping Bus 8 and Itzehoe West:2.39 km
+Measured dist betweeen Itzehoe West and Helping Bus 9:2.41 km
+Measured dist betweeen Helping Bus 9 and Itzehoe mitte:2.72 km
+Measured dist betweeen Helping Bus 23 and Itzehoe mitte:20.38 km
+Measured dist betweeen itzehoe mitte and Helping Bus 10:1.93 km
+Measured dist betweeen Helping Bus 10 and Itzehoe south:1.48 km
+Measured dist betweeen Helping Bus 10 and Grevenkop:8.38 km
+Measured dist betweeen Grevenkop and Helping Bus 11:2.22 km
+Measured dist betweeen Helping Bus 11 and Steinburg:1.68 km
+Measured dist betweeen Steinburg and Substation Adj 2:3.12 km
+Measured dist betweeen Helping Bus 11 and Helping Bus 12:3.74 km
+Measured dist betweeen Helping Bus 12 and Glückstadt:11.19 km
+Measured dist betweeen Glückstadt and Helping Bus 13:13.83 km
+Measured dist betweeen Helping Bus 13 and Elmshorn Mitte:1.20 km
+Measured dist betweeen Elmshorn and Uetersen West:7.44 km
+Measured dist betweeen Uetersen West and Helping Bus 14:8.18 km
+Measured dist betweeen Helping Bus 14 and Holm:0.25 km
+Measured dist betweeen Helping Bus 14 and Wedel Nord:4.24 km
+Measured dist betweeen Wedel Nord and Pinniberg Mitte:9.25 km
+Measured dist betweeen Pinniberg Mitte and Kummerfeld:2.67 km
+Measured dist betweeen Kummerfeld and Halstenbek:8.98 km
+Measured dist betweeen Helping Bus 13 and Helping Bus 15:5.84 km
+Measured dist betweeen Helping Bus 15 and Heede:4.15 km
+Measured dist betweeen Helping Bus 15 and Helping Bus 16:4.46 km
+Measured dist betweeen Helping Bus 16 and Elmshorn Ost:2.24 km
+Measured dist betweeen Kummerfeld and Helping Bus 16:6.57 km
+Measured dist betweeen Shuby West and Helping Bus 28:2.42 km
+Measured dist betweeen Helping Bus 28 and Substation Adj 3:3.45 km
+Measured dist betweeen Substation Adj 3 and Jubek:1.73 km
+Measured dist betweeen Weding and Substation Adj 4:17.26 km
+Measured dist betweeen Substation Adj 4 and Schaltanlage sterup:6.64 km
+Measured dist betweeen Schaltanlage sterup and Süderbrarup:8.61 km
+Measured dist betweeen Süderbrarup and Struxdorf:7.41 km
+Measured dist betweeen Schaltanlage and Ellenberg:14.94 km
+Measured dist betweeen Ellenberg and Helping Bus 29:20.29 km
+Measured dist betweeen Helping Bus 29 and Barkelsby:0.50 km
+Measured dist betweeen Helping Bus 29 and Grosswaabs:12.13 km
+Measured dist betweeen Barkelsby and Helping 30:7.96 km
+Measured dist betweeen Helping 30 and Goosefeld:0.73 km
+Measured dist betweeen Helping 30 and Uw Haby:2.83 km
+Measured dist betweeen Uw Haby and Felde:12.43 km
+Measured dist betweeen Felde and Helping Bus 31:0.15 km
+Measured dist betweeen Helping Bus 33 and Kiel Sud:12.20 km
+Measured dist betweeen Kiel Sud and Hohndorf:17.41 km
+Measured dist betweeen Kiel Sud and Stolpe:16.29 km
+Measured dist betweeen Audorf and Katenstedt:11.63 km
+Measured dist betweeen Katenstedt and Helping Bus 34:4.26 km
+Measured dist betweeen Helping Bus 34 and Nortorf:1.15 km
+Measured dist betweeen Helping Bus 34 and Kamp:5.04 km
+Measured dist betweeen Kamp and Substation Adj 5:3.86 km
+Measured dist betweeen Substation Adj 5 and Einfeld:0.93 km
+Measured dist betweeen Einfeld and Neumünster Nord:0.76 km
+Measured dist betweeen Neumünster Nord and Brachenfeld:4.15 km
+Measured dist betweeen Brachenfeld and Ost:1.10 km
+Measured dist betweeen Ost and Neumünster mitte:1.20 km
+Measured dist betweeen Neumünster mitte and Neumünster west:2.26 km
+Measured dist betweeen Neumünster west and Neumünster sud:1.64 km
+Measured dist betweeen Neumünster sud and Brachenfeld:4.77 km
+Measured dist betweeen Einfeld and Brachenfeld:4.60 km
+Measured dist betweeen Brachenfeld and Helping Bus 35:14.77 km
+Measured dist betweeen Brachenfeld and Helping Bus 37:6.38 km
+Measured dist betweeen Helping Bus 37 and Wattenbek:7.76 km
+Measured dist betweeen Helping Bus 37 and Stolpe:6.93 km
+Measured dist betweeen Stolpe and Trenter Berg:11.92 km
+Measured dist betweeen Trenter Berg and Trent:0.85 km
+Measured dist betweeen Trent and Helmstorf:17.50 km
+Measured dist betweeen Helmstorf and Weissenhauser:12.16 km
+Measured dist betweeen Weissenhauser and Gohl:10.76 km
+Measured dist betweeen Gohl and Gohl Wind:0.63 km
+Measured dist betweeen Gohl Wind and Bisdorf:23.98 km
+Measured dist betweeen Gohl Wind and Helping Bus 38:8.03 km
+Measured dist betweeen Helping Bus 38 and Heiligenhafen:1.31 km
+Measured dist betweeen Helping Bus 38 and Lütjenbrode:3.58 km
+Measured dist betweeen Helping Bus 35 and Bornhoved:2.06 km
+Measured dist betweeen Bornhoved and Helping Bus 36:15.69 km
+Measured dist betweeen Helping Bus 36 and Bad Segeberg:6.61 km
+Measured dist betweeen Bad Segeberg and Wahlstedt:6.14 km
+Measured dist betweeen Helping Bus 36 and Geschendorf:6.57 km
+Measured dist betweeen Geschendorf and Niendorf:13.72 km
+Measured dist betweeen Niendorf and Barkhorst:14.46 km
+Measured dist betweeen Barkhorst and Helping Bus 52:0.63 km
+Measured dist betweeen Helping Bus 52 and Bad Oldesloe:4.90 km
+Measured dist betweeen Helping Bus 52 and Helping Bus 48:7.18 km
+Measured dist betweeen Niendorf and Genin Sud:4.45 km
+Measured dist betweeen Genin Sud and Lübeck Genin:0.55 km
+Measured dist betweeen Lübeck Genin and Dombreite:4.12 km
+Measured dist betweeen Dombreite and Lubeck:5.48 km
+Measured dist betweeen Genin Sud and Strecknitz:3.49 km
+Measured dist betweeen Niendorf and Lubeck:10.96 km
+Measured dist betweeen Gohl and Helping Bus 39:5.15 km
+Measured dist betweeen Helping Bus 39 and Lensahn:4.21 km
+Measured dist betweeen Lensahn and Cismar West:5.01 km
+Measured dist betweeen Helping Bus 39 and Helping Bus 40:17.23 km
+Measured dist betweeen Helping Bus 40 and Rogerfelde:0.27 km
+Measured dist betweeen Helping Bus 40 and Helping Bus 41:10.00 km
+Measured dist betweeen Helping Bus 41 and Eutin:2.74 km
+Measured dist betweeen Helping Bus 41 and Bahrenkrug:11.87 km
+Measured dist betweeen Helping Bus 40 and Scharbeutz:9.05 km
+Measured dist betweeen Scharbeutz and Siems:13.59 km
+Measured dist betweeen Siems and Kraftwerk Herrenwyk:3.04 km
+Measured dist betweeen Siems and Bad Schwartau:6.30 km
+Measured dist betweeen Bad Schwartau and Lübeck:1.62 km
+Measured dist betweeen Lübeck and Substation Adj 4:1.62 km
+Measured dist betweeen Substation Adj 4 and Vorwerk:2.55 km
+Measured dist betweeen Vorwerk and Schlaltanlage Lubeck Nord:3.16 km
+Measured dist betweeen Vorwerk and St lorenz Nord:3.16 km
+Measured dist betweeen St lorenz Nord and Schlaltanlage Lubeck Sud:2.35 km
+Measured dist betweeen St lorenz Sud and Schlaltanlage Lubeck Sud:1.04 km
+Measured dist betweeen Schlaltanlage Lubeck Sud and Lubeck Zentrum:1.61 km
+Measured dist betweeen Lubeck Zentrum and Getrud:2.47 km
+Measured dist betweeen Getrud and Vorwerk:1.32 km
+Measured dist betweeen Schlaltanlage Lubeck Sud and Marli:2.74 km
+Measured dist betweeen Lübeck and Helping Bus 42:19.68 km
+Measured dist betweeen Helping Bus 42 and Kastorf:1.16 km
+Measured dist betweeen Kastorf and Berkenthin:5.74 km
+Measured dist betweeen Helping Bus 42 and Helping Bus 43:8.59 km
+Measured dist betweeen Helping Bus 43 and Sandesneben:2.78 km
+Measured dist betweeen Helping Bus 43 and Helping Bus 44:9.66 km
+Measured dist betweeen Helping Bus 44 and Molln West:10.56 km
+Measured dist betweeen Helping Bus 44 and Helping Bus 45:0.00 km
+Measured dist betweeen Helping Bus 45 and Schwarzenbek:1.33 km
+Measured dist betweeen Helping Bus 45 and Helping Bus 46:9.97 km
+Measured dist betweeen Helping Bus 46 and Lauenburg:5.02 km
+Measured dist betweeen Helping Bus 46 and Schaltwerk krummel:5.91 km
+Measured dist betweeen Schaltwerk Krummel and Grüner jäger:1.34 km
+Measured dist betweeen Grüner jäger and Helping Bus 47:5.30 km
+Measured dist betweeen Helping Bus 47 and Substation Adj 6:0.97 km
+Measured dist betweeen Helping Bus 47 and Substation Adj 7:7.96 km
+Measured dist betweeen Substation Adj 7 and Substation Adj 8:1.88 km
+Measured dist betweeen Substation Adj 8 and Substation Adj 9:2.30 km
+Measured dist betweeen Substation Adj 9 and Helping Bus 47:5.70 km
+Measured dist betweeen Helping Bus 47 and Substation Adj 10:4.72 km
+Measured dist betweeen Helping Bus 47 and Ahrensburg Nord:11.93 km
+Measured dist betweeen Ahrensburg Nord and Helping Bus 48:7.05 km
+Measured dist betweeen Helping Bus 48 and Bargteheide:2.02 km
+Measured dist betweeen Bad Bramstedt and Helping Bus  50:8.58 km
+Measured dist betweeen Helping Bus  50 and Kaltenkirchen Nord:1.54 km
+Measured dist betweeen Helping Bus  50 and Helping Bus  51:3.32 km
+Measured dist betweeen Helping Bus  51 and KaltenkirchenSüd:2.17 km
+Measured dist betweeen Helping Bus  51 and Hamburg Nord 1_110:6.61 km
+Measured dist betweeen Hamburg Nord 1 _110 and Helping Bus  54:3.53 km
+Measured dist betweeen Helping Bus  54 and Quickborn ost:2.36 km
+Measured dist betweeen Helping Bus  54 and Helping Bus  55:6.05 km
+Measured dist betweeen Helping Bus  55 and Norderstedt:2.60 km
+Measured dist betweeen Hamburg Nord 1_110 and Helping Bus 56:2.88 km
+Measured dist betweeen Helping Bus 56 and Harksheide:7.75 km
+Measured dist betweeen Helping Bus 31 and Helping Bus 33:2.09 km
+Measured dist betweeen Helping Bus 31 and Helping Bus 32:3.04 km
+Measured dist betweeen Helping Bus  55 and Helping Bus  59:6.29 km
+Measured dist betweeen Helping Bus  59 and Halstenbek:2.28 km
+Measured dist betweeen Audorf and Helping Bus 31:15.10 km
+Measured dist betweeen Helping Bus 31 and Helping Bus 32:3.04 km
+Measured dist betweeen Helping Bus 32 and Kiel West:5.72 km
+Measured dist betweeen Helping Bus 32 and Kiel Sud:10.24 km
+Measured dist betweeen Helping Bus 31 and Helping Bus 33:2.09 km
+Measured dist betweeen Brunnsbuttel and itzehoe west:18.09 km
+Measured dist betweeen Hamburg Nord 1 and itzehoe west:41.91 km
+Measured dist betweeen Handewitt and Jardelund:15.77 km
+Measured dist betweeen Handewitt and Shuby West:24.21 km
+Measured dist betweeen Handewitt and Audorf sud:55.66 km
+Measured dist betweeen Shuby West and Audorf sud:32.07 km
+Measured dist betweeen Helping Bus 3 and Helping Bus 4:33.59 km
+Measured dist betweeen Helping Bus 4 and Uw Husum Nord:0.32 km
+Measured dist betweeen Brunesbuttel and Helping Bus 19:2.55 km
+Measured dist betweeen Audorf Sud and Wilster:47.61 km
+Measured dist betweeen Wilter and Helping Bus 57:5.04 km
+Measured dist betweeen Helping Bus 57 and Brokdorf:3.06 km
+Measured dist betweeen Helping Bus 57 and Helping Bus 58:6.95 km
+Measured dist betweeen Helping Bus 58 and Phaenschieberanlage Krempermarsch:3.28 km
+Measured dist betweeen Phaenschieberanlage Krempermarsch and Kummerfeld:25.33 km
+Measured dist betweeen Hamburg Nord and Kummerfeld:14.78 km
+Measured dist betweeen Kummerfeld and Dollen:24.50 km
+Measured dist betweeen Wilster and Helping Bus 17:7.04 km
+Measured dist betweeen Helping Bus 17 and Buttel:2.16 km
+Measured dist betweeen Helping Bus 17 and Brunesbuttel:3.02 km
+Measured dist betweeen Brunesbuttel and Helping Bus 18:1.73 km
+Measured dist betweeen Helping Bus 18 and Suderdonn:8.61 km
+Measured dist betweeen Suderdonn and Heide West:21.44 km
+Measured dist betweeen Siems and Kraftwerk Herrenwyk:3.04 km
+Measured dist betweeen Heide West and Uw Husum Nord:38.87 km
