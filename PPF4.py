@@ -119,6 +119,48 @@ def detect_timestamp_col(df):
     return None
 
 
+# def build_name_to_col_map(net, df_ts, element, csv_columns):
+
+#     mapping = {}
+#     # convert lowered columns for matching
+#     cols_lower = {c: c.lower().strip() for c in csv_columns}
+#     for idx, row in element.iterrows():
+#         name = str(row.get("name", "")).strip()
+#         bus = str(row.get("bus", "")).strip()
+#         found = None
+
+#         if name:
+#             name_low = name.lower().strip()
+#             # exact match
+#             for c, cl in cols_lower.items():
+#                 if cl == name_low:
+#                     found = c
+#                     break
+#             # case sensitve partial match
+#             if not found:
+#                 for c, cl in cols_lower.items():
+#                     if name_low in cl or cl in name_low:
+#                         found = c
+#                         break
+#         # try matching by bus number string if name not matched
+#         if not found and bus and bus.isdigit():
+#             for c, cl in cols_lower.items():
+#                 if bus == cl or bus in cl:
+#                     found = c
+#                     break
+#         # fallback: if only one column available
+#         if not found:
+#             if len(csv_columns) == 1:
+#                 found = csv_columns[0]
+#             else:
+#                 found = csv_columns[0]
+#                 print(
+#                     f"Warning: Could not find matching TS column for element '{name}' (idx {idx}). Falling back to '{found}'."
+#                 )
+#             mapping[idx] = found
+#     return mapping
+
+
 def normalize(s: str):
     if s is None:
         return ""
@@ -276,7 +318,116 @@ def Load_timeseriesdata(net, base_path, sgen_csv=None, load_csv=None, sgen_bus=0
         # if load_cols
         # else {}
 
+    # sgen_map = build_name_to_col_map(net, df_sgen_ts, net.sgen, sgen_cols) if sgen_cols else {}
+    # print(net.sgen.head())
+    # print(len(net.sgen))
+    # print("load_total number:", len(load_map))
+    # print("load_list from 1-10:", list(load_map.items())[:20])
+    # print(net.sgen["name"].head(20))
+    # print(df_load_ts.columns[:20])
+
     return load_list, sgen_list, df_load_ts, df_sgen_ts, sgen_map, load_map
+
+
+# First power flow
+# def run_powerflow(
+#     net,
+#     load_data,
+#     sgen_data,
+#     load_list,
+#     sgen_list,
+#     load_map,
+#     sgen_map,
+#     result_file="results",
+# ):
+#     if not os.path.exists(result_file):
+#         os.makedirs(result_file)
+
+#     # determine timesteps from the time-series df (prefer load df if present)
+#     if load_data is not None and not load_data.empty:
+#         timesteps = range(len(load_data))
+#     elif sgen_data is not None and not sgen_data.empty:
+#         timesteps = range(len(sgen_data))
+#     else:
+#         raise ValueError("No time series data provided for loads or PV.")
+
+#     # power flow results list
+#     bus_results_all = []
+#     line_loading_results_all = []
+#     line_p_results_all = []
+
+#     for t in timesteps:
+#         # assign load and PV generation
+#         for i in load_list:
+#             if i in load_map and load_map[i] in load_data.columns:
+#                 val = pd.to_numeric(load_data.iloc[t][load_map[i]], errors="coerce")
+#                 if pd.isna(val):
+#                     val = 0.0
+#                 net.load.at[i, "p_mw"] = float(val)
+#             else:
+#                 net.load.at[i, "p_mw"] = 0.0
+
+#         # assign sgen (PV/wind) values per mapping
+#         for i in sgen_list:
+#             if i in sgen_map and sgen_map[i] in sgen_data.columns:
+#                 val = pd.to_numeric(sgen_data.iloc[t][sgen_map[i]], errors="coerce")
+#                 if pd.isna(val):
+#                     val = 0.0
+#                 net.sgen.at[1, "p_mw"] = float(val)
+#             else:
+#                 net.sgen.at[i, "p_mw"] = 0.0
+
+#         # pp.runpp(net)
+#         try:
+#             pp.runpp(net)
+#         except pp.LoadflowNotConverged:
+#             print(f"Power flow did not converge at timestep{t}")
+#             print(" Total Load (MW):", net.load["p_mw"].sum())
+#             print(" Total PV (MW):", net.sgen["p_mw"].sum())
+#             print(" Slack bus:", net.ext_grid.bus.values)
+#             continue
+
+#         bus_res = pd.Series(
+#             net.res_bus["vm_pu"].values, index=net.res_bus.index, name=t
+#         )
+#         line_loading_res = pd.Series(
+#             net.res_line["loading_percent"].values, index=net.res_line.index, name=t
+#         )
+#         line_p_to_res = pd.Series(
+#             net.res_line["p_to_mw"].values, index=net.res_line.index, name=t
+#         )
+
+#         # Add timestep info
+#         bus_res["timestep"] = t
+#         line_loading_res["timestep"] = t
+
+#         # power flow results list
+#         bus_results_all.append(bus_res)
+#         line_loading_results_all.append(line_loading_res)
+#         line_p_results_all.append(line_p_to_res)
+
+#     #   Convert result lists to DataFrames
+#     bus_res_df = pd.DataFrame(bus_results_all)
+#     bus_res_df.columns = [f"Bus_{str(c)}_vm_pu" for c in bus_res_df.columns]
+
+#     line_loading_res_df = pd.DataFrame(line_loading_results_all)
+#     line_loading_res_df.columns = [
+#         f"Line_{str(c)}_loading%" for c in line_loading_res_df.columns
+#     ]
+
+#     line_p_res_df = pd.DataFrame(line_p_results_all)
+#     line_p_res_df.columns = [f"Line_{str(c)}_p_to_MW" for c in line_p_res_df.columns]
+
+#     # Combine line results
+#     line_results_all = pd.concat([line_loading_res_df, line_p_res_df], axis=1)
+
+#     bus_res_df.to_csv(os.path.join(result_file, "bus_result.csv"), index=True)
+#     line_results_all.to_csv(os.path.join(result_file, "line_results.csv"), index=True)
+
+#     print(f"Conventional power flow completed for {len(timesteps)} timesteps.")
+#     print(f"Results saved to: {os.path.join(result_file, 'PPF2results.csv')}")
+
+#     return bus_res_df, line_results_all
 
 
 def detect_overloaded_lines(net, threshold=80):
@@ -309,6 +460,19 @@ def compute_required_relief(net, overloaded, threshold=80):
         p_flow = max(p_from, p_to)
 
         # fraction of overload
+        # overload_frac = max(0.0, (loading - threshold) / threshold)
+
+        # #sensitivity correction ptdf mag
+        # sensitivity = 0.3
+        # damping = 0.5
+        # # MW reduction neeed
+        # required_mw = damping * (overload_frac * p_flow / sensitivity)
+
+        # required_mw = min(required_mw, 0.6 * p_flow)
+
+        # relief[idx] = required_mw
+
+        # fraction of overload
         overload_frac = (loading - threshold) / 80
 
         # MW reduction neeed
@@ -319,6 +483,173 @@ def compute_required_relief(net, overloaded, threshold=80):
         relief[idx] = required_mw
 
     return relief
+
+
+# def compute_required_relief(
+#     net,
+#     bess_bus,
+#     bess_pool,
+#     ptdf=None,
+#     threshold=80,
+#     safety_margin=0.98
+#     ):
+
+#     overloaded_lines = net.res_line.loading_percent > threshold
+
+#     if not overloaded_lines.any():
+#         return 0.0, {"congested": False}
+
+#     p_actual_total = 0.0
+#     detail = []
+
+#     for line_idx in net.line.index[overloaded_lines]:
+#         loading = net.res_line.at[line_idx, "loading_percent"]
+#         threshold = threshold
+
+#     # Approximate line rating in MW using current results
+#         p_flow_mw = abs(net.res_line.at[line_idx, "p_from_mw"])
+#         overload_frac = (loading - threshold) / max(loading, 1e-6)
+
+#         overload_mw = overload_frac * p_flow_mw * safety_margin
+
+#         if overload_mw <= 0:
+#             continue
+
+#     # PTDF inclusion
+
+#         if ptdf is not None:
+#             sensitivity = ptdf[line_idx, bus]
+#         else:
+#             sensitivity = 0.05
+
+#         if abs(sensitivity) > 1e-3:
+#             continue
+
+#         # Required BESS power for this line
+#         required_mw = overload_mw / sensitivity
+#         required_mw = np.sign(sensitivity) * overload_mw / abs(sensitivity)
+
+#         p_actual_total += required_mw
+
+#         detail.append(
+#             { "line": line_idx,
+#              "loading_pct": loading,
+#              "overload_mw": overload_mw,
+#              "ptdf": sensitivity,
+#              "p_req_line": required_mw }
+#         )
+
+#     #sanity clamp
+#     if not np.isfinite(p_actual_total):
+#         p_actual_total = 0.0
+
+#     return p_actual_total, {
+#         "congested": True,
+#         "lines": detail,
+#         "p-bess_request_mw": p_actual_total,
+#     }
+
+
+def dispatch_multi_bess(
+    net,
+    bess_pool,
+    ptdf,
+    congested_lines,
+    overload_threshold,
+    timestep_hrs,
+):
+
+    total_dispatched = 0.0
+    congested = False
+    details = []
+
+    for line_idx in congested_lines:
+
+        loading = net.res_line.at[line_idx, "loading_percent"]
+        if loading <= overload_threshold:
+            continue  ## skip lines under threshold
+
+        # congested = True
+
+        # Required MW relief on the line
+        pflow_mw = abs(net.res_line.at[line_idx, "p_from_mw"])
+        overload_mw = max(
+            0.0, (loading - overload_threshold) / overload_threshold * pflow_mw
+        )
+
+        if overload_mw <= 0:
+            continue
+
+        # congested = True
+
+        relieved_mw = 0.0
+
+        # PTDF sensitivities to each BESS
+        sensitivities = {
+            bus: ptdf.get((line_idx, bus), 0.0)
+            for bus in bess_pool
+            if abs(ptdf.get((line_idx, bus), 0.0)) > 1e-3
+        }
+
+        if not sensitivities:
+            congested = True
+            continue
+
+        # Sort BESS by effectiveness (|PTDF| descending)
+
+        sorted_bess = sorted(
+            sensitivities.items(), key=lambda x: abs(x[1]), reverse=True
+        )
+
+        #  total_weight = sum(abs(s) for s in sensitivities.values())
+
+        # Dispatch each BESS proportionally
+        for bus, sensitivity in sorted_bess:
+            bess = bess_pool[bus]
+
+            remains_relief = overload_mw - abs(relieved_mw)
+            if remains_relief <= 1e-3:
+                break
+            # K = 4
+            direction = -np.sign(sensitivity)
+            p_req = direction * (remains_relief / abs(sensitivity))
+
+            p_act = bess.dispatch(
+                p_set_mw=p_req, q_support=0.0, timestep_hours=timestep_hrs
+            )
+
+            relief = sensitivity * p_act
+
+            relieved_mw += abs(sensitivity * p_act)
+
+            total_dispatched += abs(p_act)
+
+            details.append(
+                {
+                    "line": line_idx,
+                    "bus": bus,
+                    "ptdf": sensitivity,
+                    "p_req": p_req,
+                    "p_act": p_act,
+                    "relief_mw": relief,
+                    "soc": bess.soc,
+                }
+            )
+
+        # Check if congestion fully relieved
+        if abs(relieved_mw) < 0.98 * overload_mw:
+            congested = True
+
+    return total_dispatched, {
+        "congested": congested,
+        "details": details,
+    }
+
+
+# Compute electrical distaance once per timestep
+def get_bus_dist(net, ref_bus):
+
+    return calc_distance_to_bus(net, ref_bus)
 
 
 def dispatch_bess_local2(
@@ -457,6 +788,363 @@ def dispatch_bess_local2(
                 break
 
     return total_dispatch
+
+
+def dispatch_bess_local(
+    net,
+    bess_pool,
+    congested_lines,
+    overload_threshold,
+    timestep_hrs,
+    relief_factor=4,
+    max_iter_per_line=4,
+):
+    total_dispatch = 0.0
+
+    for line in congested_lines:
+        loading = net.res_line.at[line, "loading_percent"]
+        if loading <= overload_threshold:
+            continue
+
+        from_bus = net.line.at[line, "from_bus"]
+        to_bus = net.line.at[line, "to_bus"]
+
+        # Relief estimate
+        pflow = abs(net.res_line.at[line, "p_from_mw"])
+        overload_mw = (loading - overload_threshold) / 100 * pflow
+        if overload_mw <= 0:
+            continue
+
+        # Dispatch BESS at adjacent buses
+        for bus in [from_bus, to_bus]:
+            if bus not in bess_pool:
+                continue
+
+            bess = bess_pool[bus]
+
+            # Heuristic: discharge on from_bus, charge on to_bus
+            p_req = relief_factor * overload_mw
+
+            if bus == to_bus:
+                p_req = -p_req
+
+            for _ in range(max_iter_per_line):
+                p_act = bess.dispatch(
+                    p_set_mw=p_req, q_support=0.0, timestep_hours=timestep_hrs
+                )
+                total_dispatch += p_act
+
+                pp.runpp(net)
+                loading_new = net.res_line.at[line, "loading_percent"]
+
+                # stop if no improvement
+                if loading_new >= loading - 0.02:
+                    bess.dispatch(-p_act, 0.0, timestep_hrs)
+                    pp.runpp(net)
+                    continue
+
+                loading = loading_new
+
+    return total_dispatch
+
+    p_act *= 0.6
+
+
+def compute_ptdf(
+    net,
+    bess_buses,
+):
+    """
+    Compute DC PTDFs using pandapower automatic slack balancing
+
+    """
+    #    run base DC power flows
+    pp.rundcpp(net)
+    base_flows = net.res_line.p_from_mw.copy()
+
+    ptdf = {}
+    delta_p = 1.0  # MW injection
+
+    for line_indx, bus in bess_buses.items():
+
+        # find sgen at this bus
+        sgen_idx = net.sgen.index[net.sgen.bus == bus]
+        if len(sgen_idx) == 0:
+            continue
+        sgen_idx = sgen_idx[0]
+
+        # inject +1 MW
+        net.sgen.at[sgen_idx, "p_mw"] += delta_p
+
+        # dc power fow
+        pp.rundcpp(net)
+
+        # compute ptdf
+        for line_indx in net.line.index:
+            delta = net.res_line.at[line_indx, "p_from_mw"] - base_flows.at[line_indx]
+
+            ptdf[(line_idx, bus)] = float(delta)
+
+        # roll back injections
+        net.sgen.at[sgen_idx, "p_mw"] -= delta_p
+
+    return ptdf
+
+
+def dispatch_bess(battery, requested_mw, timestep_hrs=1.0, allow_charge=True):
+
+    if battery is None:
+        return {
+            "requested_mw": 0.0,
+            "actual_mw": 0.0,
+            "soc_mwh": None,
+            "soc_percent": None,
+        }
+
+    if timestep_hrs <= 0:
+        raise ValueError("timestep_hours must be > 0")
+
+    # enforce charging policy
+    p_req = float(requested_mw)
+    q_req = 0.2
+    if not allow_charge and p_req < 0:
+        p_req = 0.0
+
+    # delegate limits to BatteryModel2
+    actual_mw = battery.dispatch(
+        p_set_mw=p_req,
+        q_support=q_req,
+        timestep_hours=timestep_hrs,
+    )
+    soc = battery.soc
+
+    soc_mwh = battery.energy_current
+    soc_percent = 100.0 * soc if soc is not None else None
+
+    return {
+        "requested_mw": requested_mw,
+        "actual_mw": actual_mw,
+        "soc_mwh": soc_mwh,
+        "soc_percent": soc_percent,
+    }
+
+
+# Third power flow
+# def run_powerflow(
+#     net,
+#     load_data,
+#     sgen_data,
+#     load_list,
+#     sgen_list,
+#     load_map,
+#     sgen_map,
+#     result_file="results",
+#     timestep_hrs = 1.0,
+#     overload_threshold=80,
+#     ):
+
+#     if not os.path.exists(result_file):
+#         os.makedirs(result_file)
+
+#     # determine timesteps from the time-series df (prefer load df if present)
+#     if load_data is not None and not load_data.empty:
+#         steps = len(load_data)
+#     elif sgen_data is not None and not sgen_data.empty:
+#         steps = len(sgen_data)
+#     else:
+#         raise ValueError("No time series data provided for loads or PV.")
+
+#     timesteps = range(steps)
+
+#     # power flow results list
+#     bess_pool = {}
+#     bus_results = []
+#     line_results = []
+
+#     bus_results_ctrl = []
+#     line_results_ctrl = []
+#     bus_dispatch = {}
+
+#     # controlled_overloadlines = [47, 52, 136, 20, 74, 246, 10, 44, 213, 266, 242, 140, 49, 53]
+#     # Bess_bus_line = {47: 30, 53: 40, 136: 35, 20: 27, 74: 89,
+#     #                  246: 32, 10: 19, 44: 26, 213: 58, 266: 190, 140: 222, 49: 75, 52: 24}
+
+#     # #used_buses =set()
+
+
+#     # battery log
+#     log_path = os.path.join(result_file, "battery_dispatch_log.csv")
+#     with open(log_path, "w", newline="") as f:
+#         csv.writer(f).writerow(
+#             ["timestep", "bus", "dispatch_mw", "soc_mwh"]
+#         )
+#     # logging.basicConfig(
+#     # filename= "battery_dispatch.log",
+#     # filemode= "a",
+#     # level= logging.INFO,
+#     # format= "%(asctime)s, %(message)s")
+
+#     # logger = logging.getLogger(__name__)
+
+#     Scaled_load = 4.0
+
+#     for t in timesteps:
+#         # assign load and PV generation
+#         for i in load_list:
+#             if i in load_map and load_map[i] in load_data.columns:
+#                 val = pd.to_numeric(load_data.iloc[t][load_map[i]], errors="coerce")
+#                 if pd.isna(val):
+#                     val = 0.0
+#                 net.load.at[i, "p_mw"] = Scaled_load * float(val)
+#             else:
+#                 net.load.at[i, "p_mw"] = 0.0
+
+#         # assign sgen (PV/wind) values per mapping
+#         for i in sgen_list:
+#             if i in sgen_map and sgen_map[i] in sgen_data.columns:
+#                 val = pd.to_numeric(sgen_data.iloc[t][sgen_map[i]], errors="coerce")
+#                 if pd.isna(val):
+#                     val = 0.0
+#                 net.sgen.at[i, "p_mw"] = float(val)
+#             else:
+#                 net.sgen.at[i, "p_mw"] = 0.0
+
+#         # pp.runpp(net)
+#         try:
+#             pp.runpp(net)
+#         except pp.LoadflowNotConverged:
+#             print(f"Power flow did not converge at timestep{t}")
+#             print(" Total Load (MW):", net.load["p_mw"].sum())
+#             print(" Total PV (MW):", net.sgen["p_mw"].sum())
+#             print(" Slack bus:", net.ext_grid.bus.values)
+#             continue
+
+#         bus_row_Bctrl = {"timestep": t}
+#         for b in net.res_bus.index:
+#             bus_row_Bctrl[f"Bus_{b}_vm_pu"] = net.res_bus.at[b, "vm_pu"]
+#         bus_results.append(bus_row_Bctrl)
+
+#         line_row_Bctrl = {"timestep": t}
+#         for i in net.res_line.index:
+#             line_row_Bctrl[f"Line_{i}_loading%"] = net.res_line.at[i, "loading_percent"]
+#             line_row_Bctrl[f"Line_{i}_p_to_mw"] = net.res_line.at[i, "p_to_mw"]
+#         line_results.append(line_row_Bctrl)
+
+
+#     # 3. Detect overloaded lines
+#         overloaded_lines = detect_overloaded_lines(net, overload_threshold)
+
+#         # overloaded_lines = [i for i in all_overloaded_lines if i in controlled_overloadlines]
+
+#         #compute required relief
+#         if not overloaded_lines:
+#             relief_dict = {}
+#         else:
+#             relief_dict = compute_required_relief(
+#             net, overloaded_lines, overload_threshold)
+
+#         #if no overload charge battery
+#         if not relief_dict:
+#             for batt in bess_pool.values():
+#                 dispatch_bess(
+#                     batt,
+#                     requested_mw=-0.2 * batt.power_limit,
+#                     timestep_hrs=timestep_hrs,
+#                 )
+#             try:
+#                 pp.runpp(net)
+#             except:
+#                 pass
+#         else:
+#             for line_idx, required_mw in relief_dict.items():
+#                 p_from = net.res_line.at[line_idx, "p_from_mw"]
+#                 p_to   = net.res_line.at[line_idx, "p_to_mw"]
+
+#                 if abs(p_from) > abs(p_to):
+#                     bus = int(net.line.at[line_idx, "from_bus"])
+#                 else:
+#                     bus = int(net.line.at[line_idx, "to_bus"])
+
+
+#                 bus_dispatch[bus] = bus_dispatch.get(bus, 0.0) + required_mw
+#                 # if line_idx not in Bess_bus_line:
+#                 #     continue
+#                 # bus = Bess_bus_line[line_idx]
+
+#                 # if bus is None or bus in used_buses:
+#                 #     continue
+#             for bus, total_mw in bus_dispatch.items():
+
+#                 if bus not in bess_pool:
+#                     bess_pool[bus] = BatteryModel(
+#                         net=net,
+#                         bess_bus=bus,
+#                         power_limit_mw=150.0,
+#                         energy_mwh=450.0,
+#                         soc_initial=0.9,
+#                         soc_min=0.05,
+#                         soc_max=0.95,
+#                     )
+#                 dispatch_bess(
+#                     bess_pool[bus],
+#                     requested_mw=total_mw,
+#                     timestep_hrs=timestep_hrs,
+#                 )
+
+#             #run power flow
+#             try:
+#                 pp.runpp(net)
+#             except pp.LoadflowNotConverged:
+#                 print(f"[t={t}] Controlled PF did not converge")
+
+#             bus_row_ctrl = {"timestep":t}
+#             for b in net.res_bus.index:
+#                 bus_row_ctrl[f"Bus_{b}_vm_pu"] = net.res_bus.at[b, "vm_pu"]
+#             bus_results_ctrl.append(bus_row_ctrl)
+
+#             line_row_ctrl = {"timestep": t}
+#             for i in net.res_line.index:
+#                 line_row_ctrl[f"Line_{i}_loading%"] = net.res_line.at[i, "loading_percent"]
+#                 line_row_ctrl[f"Line_{i}_p_to_mw"] = net.res_line.at[i, "p_to_mw"]
+#             line_results_ctrl.append(line_row_ctrl)
+
+#             # log battery
+#             with open(log_path, "a", newline="") as f:
+#                 w =  csv.writer(f)
+#                 for bus, batt in bess_pool.items():
+#                     p = 0.0
+#                     try:
+#                         p = float(net.sgen.at[batt.bess_index, "p_mw"])
+#                     except Exception:
+#                         p = 0.0
+#                     w.writerow([t, bus, p, getattr(batt, "energy_current", getattr(batt, "soc", None))])
+
+
+#     #____save results___
+#     # before Control
+#     bus_results_df = pd.DataFrame(bus_results)
+#     line_results_df = pd.DataFrame(line_results)
+
+#     bus_results_df.to_csv(os.path.join(result_file, "bus_results_Bctrl.csv"))
+#     line_results_df.to_csv(os.path.join(result_file, "line_results_Bctrl.csv"))
+
+#     #After control
+#     bus_df = pd.DataFrame(bus_results_ctrl)
+#     line_df = pd.DataFrame(line_results_ctrl)
+
+#     bus_df.to_csv(os.path.join(result_file, "bus_results_ctrl.csv"))
+#     line_df.to_csv(os.path.join(result_file, "line_results_ctrl.csv"))
+
+
+#     print(f"[PPF2] Completed {steps} timesteps. Logs at {result_file}")
+
+
+# def get_line_loading(net):
+#     return net.res_line.loading_percent.copy()
+
+# def reset_bess_output(bess):
+#     bess.p_prev = 0.0
+#     bess.net.sgen.at[bess.bess_index, "p_mw"] = 0.0
 
 
 # fourth  power flow
@@ -840,7 +1528,19 @@ if __name__ == "__main__":
         72: 49,
         278: 258,
     }
-
+    # 278: 258,
+    #     197: 254,
+    #     42: 89,
+    #     72: 49,
+    #     70: 186,
+    #     223: 85,
+    #     105: 134,
+    #     71: 126,
+    #     40: 274,
+    #     278: 250,
+    #     126: 195,
+    # 229: 89,
+    # 230: 89,
     # create bess
     bess_pool = {}
 
@@ -855,6 +1555,29 @@ if __name__ == "__main__":
             soc_max=0.95,
             name=f"BESS_{bus}",
         )
+
+    # ptdf = {
+    #     (209, 43): 0.4,
+    #     (53, 40): 0.5,
+    #     (136, 35): 0.3,
+    #     (197, 254): 0.5,
+    #     (74, 89): 0.5,
+    #     (246, 32): 0.5,
+    #     (189, 194): 0.6,
+    #     (44, 26): 0.5,
+    #     (212, 58): 0.4,
+    #     (210, 42): 0.6,
+    #     (224, 126): 0.4,
+    #     (106, 189): 0.5,
+    #     (52, 24): 0.6,
+    #     (55, 40): 0.4,
+    #     (50, 158): 0.5
+    # }
+
+    # ptdf = compute_ptdf(net, bess_buses)
+
+    # for bus, bess in bess_pool.items():
+    #     print(bus, ptdf.get((line_idx, bus), 0.0))
 
     # # Attach PV and Load time series
     # load_list, sgen_list = Load_timeseriesdata(net, base_path)

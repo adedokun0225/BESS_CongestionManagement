@@ -2,3 +2,7 @@ Substation/
 results/
 timeseriesdata/
 overload_lines/
+7 iterations/
+15 iterations/
+.history
+.pycache

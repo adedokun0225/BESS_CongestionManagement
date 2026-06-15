@@ -1,11 +1,11 @@
 from bokeh.plotting import figure, show
 from bokeh.models import WMTSTileSource
 from bokeh.models import ColumnDataSource, HoverTool, LinearColorMapper, ColorBar
-
 from geopy.distance import geodesic
 from bokeh.palettes import RdYlBu11 
 import pandas as pd
 import numpy as np
+import chardet
 
 
 #Range for the size of the map 
@@ -46,7 +46,9 @@ def web_mercetor_convert(df, lon="Longitude", lat="Latitude"):
 
 #Load data
 def data_frame(data):
-    df = pd.read_csv(data, encoding="utf-8-sig")
+    with open(data, 'rb') as f:
+        result = chardet.detect(f.read())
+    df = pd.read_csv(data, encoding= result['encoding'])
     return df
 
 
